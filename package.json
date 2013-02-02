@@ -13,7 +13,8 @@
   },
   "scripts": {
     "start": "brunch watch --server",
-    "test": "brunch test"
+    "test": "brunch test",
+    "postinstall": "brunch build --optimize"
   },
   "dependencies": {
     "javascript-brunch": ">= 1.0 < 1.6",
@@ -22,6 +23,12 @@
 
     "css-brunch": ">= 1.0 < 1.6",
     "stylus-brunch": ">= 1.0 < 1.6",
+    "statik": ">= 1.1.0",
+    "brunch": "1.x",
+
+    "chai": "1.2.0",
+    "sinon": "1.4.2",
+    "sinon-chai": "2.1.2",
 
     "handlebars-brunch": ">= 1.0 < 1.6",
 
@@ -29,8 +36,6 @@
     "clean-css-brunch": ">= 1.0 < 1.6"
   },
   "devDependencies": {
-    "chai": "1.2.0",
-    "sinon": "1.4.2",
-    "sinon-chai": "2.1.2"
+
   }
 }

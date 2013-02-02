@@ -3,7 +3,7 @@
   "name": "timecrunch-brunch",
   "description": "HTML5 Timetracking Application",
   "version": "0.0.1",
-  "homepage": "timecrun.ch",
+  "homepage": "www.timecrun.ch",
   "repository": {
     "type": "git",
     "url": "https://github.com/steveturner/timecrunch-brunch"

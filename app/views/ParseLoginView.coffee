@@ -1,19 +1,19 @@
 View = require 'views/base/view'
 template = require 'views/templates/ParseLoginView'
 
-module.exports = class ParseLoginViewView extends View
+module.exports = class ParseLoginView extends View
   template: template
   container: '.container'
   containerMethod: 'html'
 
   initialize: ->
     super
-    _.bindAll(@, "logIn", "signUp");
     @delegate 'submit', 'form.login-form', @logIn
-    @delegate 'submit', 'form.login-form', @logIn
+    @delegate 'submit', 'form.signup-form', @signUp
     @render()
 
   logIn: (e) ->
+    e.preventDefault()
     username = @$('#login-username').val()
     password = @$('#login-password').val()
 
@@ -24,6 +24,17 @@ module.exports = class ParseLoginViewView extends View
         @$('.login-form .error').html("Invalid username or password. Please try again.").show()
         @$(".login-form button").removeAttr("disabled")
 
-  signUp: ->
-    console.log 'woot signup'
+    @$(".login-form button").attr("disabled", "disabled");
+
+  signUp: (e)->
+    e.preventDefault()
+    username = @$('#signup-username').val()
+    password = @$('#signup-password').val()
+
+    Parse.User.signUp username, password, { ACL: new Parse.ACL()},
+      success: (user) ->
+        console.log 'schweet'
+      error: (user, error) ->
+        @$('.signup-form .error').html("Invalid username or password. Please try again.").show()
+        @$(".signup-form button").removeAttr("disabled")
 

@@ -2,7 +2,6 @@ Chaplin = require 'chaplin'
 mediator = require 'mediator'
 routes = require 'routes'
 SessionController = require 'controllers/session_controller'
-SidebarController = require 'controllers/sidebar_controller'
 IssueController = require 'controllers/issue_controller'
 HeaderController = require 'controllers/header_controller'
 FooterController = require 'controllers/footer_controller'
@@ -16,6 +15,8 @@ module.exports = class Application extends Chaplin.Application
 
   initialize: ->
     super
+     # Init Parse:
+    Parse.initialize("bAcxn1Ap3wkPjCe4yhXy1aopekyxF8pPvAsnz6CA", "reLlKNZ0HR8laFARViQY6oq4NTivN0DRXMMBvltZ");
 
     # Initialize core components
     @initDispatcher()
@@ -32,9 +33,7 @@ module.exports = class Application extends Chaplin.Application
     # the root per default. You might change that in the options
     # if necessary:
     # @initRouter routes, pushState: false, root: '/subdir/'
-    # Init Parse:
-    Parse.initialize("bAcxn1Ap3wkPjCe4yhXy1aopekyxF8pPvAsnz6CA", "reLlKNZ0HR8laFARViQY6oq4NTivN0DRXMMBvltZ");
-    # Freeze the application instance to prevent further changes
+    #     # Freeze the application instance to prevent further changes
     Object.freeze? this
 
   # Override standard layout initializer
@@ -54,7 +53,6 @@ module.exports = class Application extends Chaplin.Application
     # or navigation views.
     # e.g. new NavigationController()
     new SessionController()
-    new SidebarController()
     new IssueController()
     new HeaderController()
     new FooterController()

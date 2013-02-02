@@ -1,9 +1,12 @@
 Controller = require 'controllers/base/controller'
-PageView = require 'views/home_page_view'
+LogInView = require 'views/ParseLoginView'
 
 module.exports = class HomeController extends Controller
   historyURL: 'home'
 
   index: ->
     console.log('home#show')
-    @view = new PageView()
+    if Parse.User.current()
+      new ManageTodosView();
+    else
+      new LogInView();

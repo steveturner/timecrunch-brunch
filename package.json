@@ -27,7 +27,6 @@
 
     "uglify-js-brunch": ">= 1.0 < 1.6",
     "clean-css-brunch": ">= 1.0 < 1.6"
-//TODO add in appcache-brunch for offline access
   },
   "devDependencies": {
     "chai": "1.2.0",

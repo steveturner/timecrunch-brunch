@@ -32,7 +32,8 @@ module.exports = class Application extends Chaplin.Application
     # the root per default. You might change that in the options
     # if necessary:
     # @initRouter routes, pushState: false, root: '/subdir/'
-
+    # Init Parse:
+    Parse.initialize("bAcxn1Ap3wkPjCe4yhXy1aopekyxF8pPvAsnz6CA", "reLlKNZ0HR8laFARViQY6oq4NTivN0DRXMMBvltZ");
     # Freeze the application instance to prevent further changes
     Object.freeze? this
 

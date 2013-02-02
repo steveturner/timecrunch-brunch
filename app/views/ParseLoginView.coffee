@@ -20,7 +20,6 @@ module.exports = class ParseLoginView extends View
     Parse.User.logIn username, password,
       success: (user) ->
         console.log user
-        @undelegateEvents()
       error: (user, error) ->
         @$('.login-form .error').html("Invalid username or password. Please try again.").show()
         @$(".login-form button").removeAttr("disabled")
@@ -35,7 +34,6 @@ module.exports = class ParseLoginView extends View
     Parse.User.signUp username, password, { ACL: new Parse.ACL()},
       success: (user) ->
         console.log user
-        @undelegateEvents()
       error: (user, error) ->
         @$('.signup-form .error').html("Invalid username or password. Please try again.").show()
         @$(".signup-form button").removeAttr("disabled")

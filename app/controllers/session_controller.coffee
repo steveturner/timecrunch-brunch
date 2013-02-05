@@ -118,6 +118,7 @@ module.exports = class SessionController extends Controller
     @loginStatusDetermined = true
 
     @disposeUser()
+    SessionController.serviceProviders['parse'].triggerLogout()
 
     # Discard the login info
     @serviceProviderName = null

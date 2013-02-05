@@ -21,10 +21,10 @@ module.exports = class ParseLoginView extends View
       success: (user) ->
         console.log user
       error: (user, error) ->
-        @$('.login-form .error').html("Invalid username or password. Please try again.").show()
-        @$(".login-form button").removeAttr("disabled")
+        @$('.form-signin .alert').html("Invalid username or password. Please try again.").show()
+        #@$(".login-form button").removeAttr("disabled")
 
-    @$(".login-form button").attr("disabled", "disabled");
+    #@$(".login-form button").attr("disabled", "disabled");
 
   signUp: (e)->
     e.preventDefault()

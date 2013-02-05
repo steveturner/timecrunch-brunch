@@ -28,9 +28,10 @@ module.exports = class ParseProvider extends ServiceProvider
 
   triggerLogin: (loginContext)  ->
     console.log "triggerLogin: Parse"
+    provider = @
     Parse.User.logIn 'test', 'test',
       success: (user) ->
-        console.log user
+        provider.loginHandler(@,user)
       error: (user, error) ->
         console.log error
 
@@ -41,13 +42,10 @@ module.exports = class ParseProvider extends ServiceProvider
       mediator.publish 'loginSuccessful', {provider: this, loginContext}
 
       # Publish the session with extra userinfo
-      @getUserInfo (userInfo) ->
-        data =
-          provider: this
-          accessToken: authResponse.access_token
-        _.extend(data, userInfo)
-        console.log 'serviceProviderSession:', data
-        mediator.publish 'serviceProviderSession', data
+      authResponse.provider = @
+      authResponse.userId = authResponse.id
+      console.log 'serviceProviderSession:', authResponse
+      mediator.publish 'serviceProviderSession', authResponse
     else
       mediator.publish 'loginFail', {provider: this, loginContext}
 
@@ -55,5 +53,8 @@ module.exports = class ParseProvider extends ServiceProvider
     Parse?.User?.current()?
   # TODO
   getUserInfo: (callback) ->
-    request = gapi.client.request path: '/oauth2/v2/userinfo'
-    request.execute callback
+    Parse?.User?.current()
+
+  triggerLogout: (loginContext) ->
+    console.log "triggerLogout: #{loginContext}"
+    Parse.User.logOut()

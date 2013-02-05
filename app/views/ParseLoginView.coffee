@@ -8,8 +8,8 @@ module.exports = class ParseLoginView extends View
 
   initialize: ->
     super
-    @delegate 'submit', 'form.login-form', @logIn
-    @delegate 'submit', 'form.signup-form', @signUp
+    @delegate 'submit', 'form.form-signin', @logIn
+    #@delegate 'submit', 'form.signup-form', @signUp
     @render()
 
   logIn: (e) ->

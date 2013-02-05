@@ -10,7 +10,7 @@ module.exports = class HeaderView extends View
 
   initialize: ->
     super
-    @delegate 'click', '.login_google', -> @publishEvent '!showLogin', @
+    @delegate 'click', '.login_parse', -> @publishEvent '!showLogin', @
     @delegate 'click', '.logout', -> @publishEvent '!logout', @
 
     @subscribeEvent 'login', -> @render()

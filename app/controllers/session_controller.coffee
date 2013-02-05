@@ -2,6 +2,7 @@ mediator = require 'mediator'
 Controller = require 'controllers/base/controller'
 User = require 'models/user'
 Google = require 'lib/services/google'
+ParseProvider = require 'lib/services/parse'
 LoginView = require 'views/login_view'
 
 module.exports = class SessionController extends Controller
@@ -9,7 +10,8 @@ module.exports = class SessionController extends Controller
   # This just hardcoded here to avoid async loading of service providers.
   # In the end you might want to do this.
   @serviceProviders = {
-    google: new Google()
+    #google: new Google()
+    parse: new ParseProvider()
   }
 
   # Was the login status already determined?

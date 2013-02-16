@@ -9,5 +9,8 @@ support = utils.beget Chaplin.support
 
 # _(support).extend
   # someMethod: ->
+  #
+  #
+
 
 module.exports = support

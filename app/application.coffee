@@ -6,6 +6,7 @@ IssueController = require 'controllers/issue_controller'
 HeaderController = require 'controllers/header_controller'
 FooterController = require 'controllers/footer_controller'
 Layout = require 'views/layout'
+kinveyutils = require 'lib/kinveylib'
 
 # The application object
 module.exports = class Application extends Chaplin.Application
@@ -17,6 +18,8 @@ module.exports = class Application extends Chaplin.Application
     super
      # Init Parse:
     Parse.initialize("bAcxn1Ap3wkPjCe4yhXy1aopekyxF8pPvAsnz6CA", "reLlKNZ0HR8laFARViQY6oq4NTivN0DRXMMBvltZ");
+    Kinvey.init({appKey: kinveyutils.kinvey_app_key, appSecret: kinveyutils.kinvey_secret})
+
 
     # Initialize core components
     @initDispatcher()

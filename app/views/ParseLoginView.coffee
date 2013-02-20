@@ -9,19 +9,20 @@ module.exports = class ParseLoginView extends View
   initialize: ->
     super
     @delegate 'submit', 'form.form-signin', @logIn
-    #@delegate 'submit', 'form.signup-form', @signUp
+    @delegate 'submit', 'form.form-signup', @signUp
     @render()
 
   logIn: (e) ->
     e.preventDefault()
     username = @$('#login-username').val()
     password = @$('#login-password').val()
+    myUser = new Kinvey.User()
 
-    Parse.User.logIn username, password,
+    myUser.login username, password,
       success: (user) ->
         console.log user
-      error: (user, error) ->
-        @$('.form-signin .alert').html("Invalid username or password. Please try again.").show()
+      error: (error) =>
+        @$('.form-signin .alert').html(error.description).show()
         #@$(".login-form button").removeAttr("disabled")
 
     #@$(".login-form button").attr("disabled", "disabled");
@@ -31,10 +32,15 @@ module.exports = class ParseLoginView extends View
     username = @$('#signup-username').val()
     password = @$('#signup-password').val()
 
-    Parse.User.signUp username, password, { ACL: new Parse.ACL()},
+
+    Kinvey.User.create
+      username: username
+      password: password
+    ,
       success: (user) ->
         console.log user
-      error: (user, error) ->
-        @$('.signup-form .error').html("Invalid username or password. Please try again.").show()
-        @$(".signup-form button").removeAttr("disabled")
+      error: (error) =>
+        console.log "error signing up"
+        @$('.form-signup .alert').html(error.description).show()
+        @$(".form-signup button").removeAttr("disabled")
 

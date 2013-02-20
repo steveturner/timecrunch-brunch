@@ -19,8 +19,13 @@ module.exports = class Application extends Chaplin.Application
      # Init Parse:
     Parse.initialize("bAcxn1Ap3wkPjCe4yhXy1aopekyxF8pPvAsnz6CA", "reLlKNZ0HR8laFARViQY6oq4NTivN0DRXMMBvltZ")
     
-    Kinvey.Sync.configure({ conflict: Kinvey.Sync.clientAlwaysWins })
-    Kinvey.init({appKey: kinveyutils.kinvey_app_key, appSecret: kinveyutils.kinvey_secret, sync:true})
+    Kinvey.Sync.configure
+      conflict: Kinvey.Sync.serverAlwaysWins
+
+    Kinvey.init
+      appKey: kinveyutils.kinvey_app_key
+      appSecret: kinveyutils.kinvey_secret
+      sync:true
 
 
     # Initialize core components

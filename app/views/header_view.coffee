@@ -10,11 +10,11 @@ module.exports = class HeaderView extends View
 
   initialize: ->
     super
-    @delegate 'click', '.login_parse', -> @publishEvent '!showLogin', @
-    @delegate 'click', '.logout', -> @publishEvent '!logout', @
+    #@delegate 'click', '.login_parse', -> @publishEvent '!showLogin', @
+    #@delegate 'click', '.logout', -> @publishEvent '!logout', @
 
-    @subscribeEvent 'login', -> @render()
-    @subscribeEvent 'loginStatus', (active) -> @render()
+    #@subscribeEvent 'login', -> @render()
+    #@subscribeEvent 'loginStatus', (active) -> @render()
 
   getTemplateData: ->
     templateData = super

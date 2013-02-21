@@ -7,11 +7,25 @@ module.exports = class HomeController extends Controller
 
   index: ->
     console.log('home#show')
-    if Parse.User.current()
+    if Kinvey.getCurrentUser()
       #new ManageTodosView();
 
-      if Modernizr.geolocation
-        navigator.geolocation.getCurrentPosition showMap
+      test = new Work
+        
+        latitude: 69
+        longitude: 69
+    
+      test.save
+        success: (test)->
+          console.log 'success'
+        error: (error) ->
+          console.log(error)
+
+
+      #if Modernizr.geolocation
+      #  navigator.geolocation.getCurrentPosition showMap
+
+
 
       console.log 'You are already logged in fool'
     else
@@ -21,15 +35,15 @@ showMap = (position) ->
   latitude = position.coords.latitude
   longitude = position.coords.longitude
   location = new Parse.GeoPoint(latitude,longitude)
-  test = new Work("Work")
-  test.set('score', 1337)
-  user = Parse.User.current()
-  test.set('user', user)
-  test.set('location', location)
-  test.save null
+  test = new Work
+    user: Kinvey.getCurrentUser()
+    latitude: latitude
+    longitude: longitude
+  
+  test.save
     success: (test)->
       console.log 'success'
-    error: (test, error) ->
+    error: (error) ->
       console.log(error)
   console.log location
 

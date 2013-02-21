@@ -20,13 +20,22 @@ module.exports = class Application extends Chaplin.Application
     Parse.initialize("bAcxn1Ap3wkPjCe4yhXy1aopekyxF8pPvAsnz6CA", "reLlKNZ0HR8laFARViQY6oq4NTivN0DRXMMBvltZ")
     
     Kinvey.Sync.configure
-      conflict: Kinvey.Sync.serverAlwaysWins
+      conflict: Kinvey.Sync.clientAlwaysWins
 
     Kinvey.init
       appKey: kinveyutils.kinvey_app_key
       appSecret: kinveyutils.kinvey_secret
       sync:true
 
+    if(!Kinvey.Sync.isOnline)
+      alert('You are working in offline mode.');
+
+    Kinvey.Sync.count
+      success: (count) ->
+        alert('You have modified ' + count + ' entities while working in offline mode.');
+    
+      error: (e) ->
+        console.log "error syncing"
 
     # Initialize core components
     @initDispatcher()

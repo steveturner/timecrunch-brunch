@@ -1,6 +1,7 @@
 Model = require 'models/base/model'
+Chaplin = require 'chaplin'
 
-module.exports = class Header extends Model
+module.exports = class Header extends Chaplin.Model
   defaults:
     items: [
       {href: './test/', title: 'App Tests'},
